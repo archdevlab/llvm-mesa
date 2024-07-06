@@ -4,7 +4,7 @@
 
 # llvm-mesa
 
-LLVM toolchain and mesa packages for Archlinux. (git version) (No docs, no unittest, no test) (Less build time) Also included in this repo spirv-headers, spirv-tools, glslang, directx-headers, libdrm and libglvnd
+LLVM toolchain and Mesa packages for Archlinux. (git version) (No docs, no unittest, no test) (Less build time) Also included in this repo spirv-headers, spirv-tools, glslang, directx-headers, libdrm and libglvnd
 
 ### SPIRV-Headers and SPIRV-Tools
 
