@@ -89,7 +89,7 @@ Why Mesa's packages are not in a separate repo? Because mesa and llvm are closel
 
 # Build
 
-    git clone https://github.com/archdevlab/llvm-minimal-git.git
+    git clone https://github.com/archdevlab/llvm-mesa.git
     cd llvm-mesa
     ./build.sh
 
