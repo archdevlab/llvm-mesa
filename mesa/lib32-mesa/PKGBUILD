@@ -236,6 +236,7 @@ export BINDGEN_EXTRA_CLANG_ARGS=" -m32"
     -D video-codecs=all
     -D gallium-d3d12-video=enabled
     -D gallium-d3d12-graphics=enabled
+    -D legacy-x11=dri2
   )
 
   # Inject subproject packages
