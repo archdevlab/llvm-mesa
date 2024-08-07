@@ -4,7 +4,7 @@
 
 pkgname=directx-headers-git
 pkgdesc='DirectX headers for using D3D12 (git version)'
-pkgver=1.613.1.r218.g7fc7184
+pkgver=1.613.1.r219.g9be295b
 pkgrel=1
 commit=9be295b3b81ce1d0ff2b44f18d0eb86ea54c5122
 arch=(x86_64)

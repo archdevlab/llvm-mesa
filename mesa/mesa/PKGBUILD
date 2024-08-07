@@ -21,7 +21,7 @@ pkgname=(
   vulkan-imagination-git
   intel_clc-git
 )
-pkgver=24.2.0_devel.191598.f9efedb1a1a
+pkgver=24.3.0_devel.193093.d9849ac4662
 pkgrel=1
 commit=d9849ac46623797a9f56fb9d46dc52460ac477de
 arch=(x86_64)

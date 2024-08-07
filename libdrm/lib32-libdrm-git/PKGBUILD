@@ -5,7 +5,7 @@
 
 pkgname=lib32-libdrm-git
 pkgdesc='Userspace interface to kernel DRM services (32-bit) (git version)'
-pkgver=2.4.122.r7132.gad78bb5
+pkgver=2.4.122.r7147.g88db611
 pkgrel=1
 commit=88db6114985ebcfe14f592930d82d01a3d973101
 arch=(i686 x86_64)
@@ -22,7 +22,7 @@ source=(git+https://gitlab.freedesktop.org/mesa/drm.git#commit=$"${commit}"
 pkgver(){
   cd "${srcdir}"/drm
   #git describe --long --tags --abbrev=7 | sed 's/^libdrm.//;s/\([^-]*-g\)/r\1/;s/-/./g'
-  echo $(sed -n 24p meson.build | cut -c 13- | sed "s/'//g" | sed 's/,//g').r$(git rev-list --count HEAD).g$(git rev-parse --short=7 HEAD)
+  echo $(sed -n 29p meson.build | cut -c 13- | sed "s/'//g" | sed 's/,//g').r$(git rev-list --count HEAD).g$(git rev-parse --short=7 HEAD)
 }
 
 build() {
