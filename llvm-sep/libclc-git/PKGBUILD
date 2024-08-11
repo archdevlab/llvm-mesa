@@ -5,9 +5,9 @@
 pkgname=libclc-git
 pkgdesc='Library requirements of the OpenCL C programming language (git version)'
 url='https://libclc.llvm.org/'
-pkgver=19.0.0.r503537.g6b707a8cc143
+pkgver=20.0.0.r507602.ge76028a11fd3
 pkgrel=1
-commit=6b707a8cc143f094b02393f4faf89025c64520bb
+commit=e76028a11fd3195a3170c1b0cb308e62e73a05a3
 arch=(x86_64)
 license=(MIT)
 makedepends=(clang-git llvm-git cmake ninja python spirv-llvm-translator-git make git)

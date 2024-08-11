@@ -6,10 +6,9 @@
 pkgbase=lib32-clang-git
 pkgname=(lib32-clang-git lib32-clang-libs-git)
 url='https://clang.llvm.org/'
-pkgver=19.0.0.r503537.g6b707a8cc143
+pkgver=20.0.0.r507602.ge76028a11fd3
 pkgrel=1
-_pkgver=19.0.0
-commit=6b707a8cc143f094b02393f4faf89025c64520bb
+commit=e76028a11fd3195a3170c1b0cb308e62e73a05a3
 arch=(i686 x86_64)
 license=('custom:Apache 2.0 with LLVM Exception')
 makedepends=(cmake ninja lib32-libffi lib32-zlib lib32-zstd python

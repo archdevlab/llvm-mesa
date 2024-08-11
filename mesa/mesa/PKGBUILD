@@ -21,9 +21,9 @@ pkgname=(
   vulkan-imagination-git
   intel_clc-git
 )
-pkgver=24.2.0_devel.191598.f9efedb1a1a
+pkgver=24.3.0_devel.193093.d9849ac4662
 pkgrel=1
-commit=f9efedb1a1acbaa70c603d5ef57a83180a8f5782
+commit=d9849ac46623797a9f56fb9d46dc52460ac477de
 arch=(x86_64)
 url='https://mesa3d.org/'
 license=(MIT AND BSD-3-Clause AND SGI-B-2.0)
@@ -174,7 +174,7 @@ build(){
     -D android-libbacktrace=disabled
     -D dri3=enabled
     -D expat=auto
-    -D gallium-drivers=r300,r600,radeonsi,nouveau,virgl,svga,swrast,i915,iris,zink,crocus,d3d12
+    -D gallium-drivers=r300,r600,radeonsi,nouveau,virgl,svga,i915,iris,zink,crocus,d3d12,softpipe,llvmpipe
     -D gallium-extra-hud=true
     -D gallium-vdpau=enabled
     -D gallium-omx=bellagio
@@ -236,6 +236,7 @@ build(){
     -D video-codecs=all
     -D gallium-d3d12-video=enabled
     -D gallium-d3d12-graphics=enabled
+    -D legacy-x11=dri2
   )
 
   # Inject subproject packages

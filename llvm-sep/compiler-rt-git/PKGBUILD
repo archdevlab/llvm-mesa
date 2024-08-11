@@ -6,9 +6,9 @@
 pkgname=compiler-rt-git
 pkgdesc='Compiler runtime libraries for clang (git version)'
 url='https://compiler-rt.llvm.org/'
-pkgver=19.0.0.r503537.g6b707a8cc143
+pkgver=20.0.0.r507602.ge76028a11fd3
 pkgrel=1
-commit=6b707a8cc143f094b02393f4faf89025c64520bb
+commit=e76028a11fd3195a3170c1b0cb308e62e73a05a3
 arch=(x86_64)
 license=('custom:Apache 2.0 with LLVM Exception')
 depends=(gcc-libs)
@@ -18,7 +18,7 @@ makedepends_x86_64=(lib32-gcc-libs)
 provides=(compiler-rt compiler-rt-minimal-git compiler-rt-git)
 conflicts=(compiler-rt compiler-rt-minimal-git)
 replaces=(compiler-rt-minimal-git)
-options=(staticlibs)
+options=(staticlibs !lto)
 source=(git+https://github.com/llvm/llvm-project.git#commit="${commit}")
 
 pkgver(){
