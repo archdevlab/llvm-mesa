@@ -10,7 +10,7 @@ pkgver=20.0.0.r507602.ge76028a11fd3
 pkgrel=1
 commit=e76028a11fd3195a3170c1b0cb308e62e73a05a3
 arch=(x86_64)
-license=('custom:Apache 2.0 with LLVM Exception')
+license=('Apache-2.0 WITH LLVM-exception')
 depends=(gcc-libs)
 makedepends=(llvm-git cmake ninja python make git)
 # Build 32-bit compiler-rt libraries on x86_64 (FS#41911)
