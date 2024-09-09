@@ -10,7 +10,7 @@ pkgver=20.0.0.r507602.ge76028a11fd3
 pkgrel=1
 commit=e76028a11fd3195a3170c1b0cb308e62e73a05a3
 arch=(i686 x86_64)
-license=('custom:Apache 2.0 with LLVM Exception')
+license=('Apache-2.0 WITH LLVM-exception')
 makedepends=(cmake ninja lib32-libffi lib32-zlib lib32-zstd python
              gcc-multilib lib32-libxml2 make git)
 makedepends+=(lib32-llvm-git)
@@ -30,7 +30,7 @@ make help | grep -Po 'install-\K.*(?=-stripped)' | while read -r target; do
             include=0
             ;;
         clang-tidy-headers )
-            include=0
+            include=1
             ;;
         clang|clangd|clang-* )
             include=1
