@@ -11,7 +11,7 @@ pkgrel=1
 commit=e76028a11fd3195a3170c1b0cb308e62e73a05a3
 arch=(x86_64)
 license=('Apache-2.0 WITH LLVM-exception')
-makedepends=(llvm-git cmake ninja python-sphinx python-recommonmark make git)
+makedepends=(llvm-git cmake ninja python-sphinx python-myst-parser make git)
 options=(staticlibs !lto) # https://github.com/llvm/llvm-project/issues/57740
 source=(git+https://github.com/llvm/llvm-project.git#commit="${commit}"
         enable-fstack-protector-strong-by-default.patch)
