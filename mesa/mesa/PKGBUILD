@@ -172,7 +172,6 @@ build(){
     -D egl-native-platform=auto
     -D android-stub=false
     -D android-libbacktrace=disabled
-    -D dri3=enabled
     -D expat=auto
     -D gallium-drivers=r300,r600,radeonsi,nouveau,virgl,svga,i915,iris,zink,crocus,d3d12,softpipe,llvmpipe
     -D gallium-extra-hud=true
@@ -191,7 +190,7 @@ build(){
     -D imagination-srv=true
     -D shader-cache=enabled
     -D shader-cache-default=true
-    -D vulkan-layers=device-select,intel-nullhw,overlay
+    -D vulkan-layers=device-select,intel-nullhw,overlay,screenshot
     -D shared-glapi=enabled
     -D gles1=enabled
     -D gles2=enabled
