@@ -23,7 +23,7 @@ pkgname=(
 )
 pkgver=24.3.0_devel.193093.d9849ac4662
 pkgrel=1
-commit=95d15406c4aa4ec46a132b53639ad340a7b57c5a
+commit=6c84103276a9a212764e83abcd09f2c663c256fd
 arch=(x86_64)
 url='https://mesa3d.org/'
 license=(MIT AND BSD-3-Clause AND SGI-B-2.0)
@@ -80,8 +80,6 @@ makedepends=(
   # d3d12 deps
   directx-headers-git
 
-  # gallium-omx deps
-  libomxil-bellagio
 )
 makedepends+=(
   ninja
@@ -176,7 +174,6 @@ build(){
     -D gallium-drivers=r300,r600,radeonsi,nouveau,virgl,svga,i915,iris,zink,crocus,d3d12,softpipe,llvmpipe
     -D gallium-extra-hud=true
     -D gallium-vdpau=enabled
-    -D gallium-omx=bellagio
     -D gallium-va=enabled
     -D gallium-xa=enabled
     -D gallium-nine=true
@@ -280,7 +277,6 @@ package_mesa-git(){
     wayland
     zlib
     zstd
-    libomxil-bellagio
   )
   optdepends=('opengl-man-pages: for the OpenGL API man pages')
   provides=(
