@@ -180,6 +180,7 @@ build(){
     -D gallium-d3d10umd=false
     -D gallium-opencl=icd
     -D gallium-rusticl=true
+    -D gallium-rusticl-enable-drivers=auto
     -D rust_std=2021
     -D opencl-spirv=false
     -D static-libclc=all
