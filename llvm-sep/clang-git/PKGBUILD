@@ -6,7 +6,7 @@
 pkgbase=clang-git
 pkgname=(clang-git clang-libs-git)
 url='https://clang.llvm.org/'
-pkgver=20.0.0.r507602.ge76028a11fd3
+pkgver=20.0.0.r514187.gf0bd62d8709a
 pkgrel=1
 commit=f0bd62d8709a49dd87eb75411e41e2e11e0ab59d
 arch=(x86_64)

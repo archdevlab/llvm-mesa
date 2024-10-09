@@ -7,7 +7,7 @@
 pkgbase=lib32-llvm-git
 pkgname=(lib32-llvm-git lib32-llvm-libs-git)
 url='https://llvm.org/'
-pkgver=20.0.0.r507602.ge76028a11fd3
+pkgver=20.0.0.r514187.gf0bd62d8709a
 pkgrel=1
 commit=f0bd62d8709a49dd87eb75411e41e2e11e0ab59d
 arch=(i686 x86_64)
@@ -173,7 +173,7 @@ package_lib32-llvm-git(){
   install -dm755 "${pkgdir}"/usr/share/licenses/"${pkgname}"
   install -m644 "${srcdir}"/llvm-project/llvm/LICENSE.TXT "${pkgdir}"/usr/share/licenses/"${pkgname}"/LICENSE
   install -m644 "${srcdir}"/llvm-project/llvm/CREDITS.TXT "${pkgdir}"/usr/share/licenses/"${pkgname}"/CREDITS
-  install -m644 "${srcdir}"/llvm-project/llvm/CODE_OWNERS.TXT "${pkgdir}"/usr/share/licenses/"${pkgname}"/CODE_OWNERS
+  install -m644 "${srcdir}"/llvm-project/llvm/Maintainers.md "${pkgdir}"/usr/share/licenses/"${pkgname}"/Maintainers
 }
 
 package_lib32-llvm-libs-git(){
@@ -200,7 +200,7 @@ package_lib32-llvm-libs-git(){
   install -dm755 "${pkgdir}"/usr/share/licenses/"${pkgname}"
   install -m644 "${srcdir}"/llvm-project/llvm/LICENSE.TXT "${pkgdir}"/usr/share/licenses/"${pkgname}"/LICENSE
   install -m644 "${srcdir}"/llvm-project/llvm/CREDITS.TXT "${pkgdir}"/usr/share/licenses/"${pkgname}"/CREDITS
-  install -m644 "${srcdir}"/llvm-project/llvm/CODE_OWNERS.TXT "${pkgdir}"/usr/share/licenses/"${pkgname}"/CODE_OWNERS
+  install -m644 "${srcdir}"/llvm-project/llvm/Maintainers.md "${pkgdir}"/usr/share/licenses/"${pkgname}"/Maintainers
 }
 
 sha256sums=(SKIP)
