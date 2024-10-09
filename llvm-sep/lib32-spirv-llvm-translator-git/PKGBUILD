@@ -1,20 +1,20 @@
 #Maintainer: archdevlab <https://github.com/archdevlab>
+#Credits: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
 #Credits: Daniel Bermond <dbermond@archlinux.org>
 #Credits: Bruno Pagani <archange@archlinux.org>
-#Credits: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
 #Credits: Lone_Wolf <lone_wolf@klaas-de-kat.nl>
 
 pkgname=lib32-spirv-llvm-translator-git
 pkgdesc='Tool and a library for bi-directional translation between SPIR-V and LLVM IR (32-bit) (git version)'
 url='https://github.com/KhronosGroup/SPIRV-LLVM-Translator'
-pkgver=20.0.0.r2100.g88e546a
+pkgver=20.0.0.r2129.g7d7f946
 _pkgver=20.0.0
 pkgrel=1
-commit=88e546a689b26792feff6c84e049b13e2e0feef8
+commit=7d7f946dbd512367597ee97829febd43ca6c9f77
 arch=(i686 x86_64)
-license=(custom)
+license=(LicenseRef-custom)
 depends=(lib32-llvm-libs-git lib32-spirv-tools-git)
-makedepends=(git cmake llvm-git lib32-llvm-git spirv-headers-git)
+makedepends=(git cmake llvm-git lib32-llvm-git spirv-headers-git make)
 provides=(lib32-spirv-llvm-translator lib32-spirv-llvm-translator-minimal-git lib32-spirv-llvm-translator-git)
 conflicts=(lib32-spirv-llvm-translator lib32-spirv-llvm-translator-minimal-git)
 replaces=(lib32-spirv-llvm-translator-minimal-git)

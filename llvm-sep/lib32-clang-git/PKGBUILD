@@ -1,16 +1,16 @@
 #Maintainer: archdevlab <https://github.com/archdevlab>
-#Credits: Evangelos Foutras <evangelos@foutrelis.com>
+#Credits: Evangelos Foutras <foutrelis@archlinux.org>
 #Credits: Jan "heftig" Steffens <jan.steffens@gmail.com>
 #Credits: Lone_Wolf <lone_wolf@klaas-de-kat.nl>
 
 pkgbase=lib32-clang-git
 pkgname=(lib32-clang-git lib32-clang-libs-git)
 url='https://clang.llvm.org/'
-pkgver=20.0.0.r507602.ge76028a11fd3
+pkgver=20.0.0.r514187.gf0bd62d8709a
 pkgrel=1
-commit=e76028a11fd3195a3170c1b0cb308e62e73a05a3
+commit=f0bd62d8709a49dd87eb75411e41e2e11e0ab59d
 arch=(i686 x86_64)
-license=('custom:Apache 2.0 with LLVM Exception')
+license=('Apache-2.0 WITH LLVM-exception')
 makedepends=(cmake ninja lib32-libffi lib32-zlib lib32-zstd python
              gcc-multilib lib32-libxml2 make git)
 makedepends+=(lib32-llvm-git)
@@ -30,7 +30,7 @@ make help | grep -Po 'install-\K.*(?=-stripped)' | while read -r target; do
             include=0
             ;;
         clang-tidy-headers )
-            include=0
+            include=1
             ;;
         clang|clangd|clang-* )
             include=1
@@ -69,10 +69,6 @@ prepare(){
 }
 
 build(){
-# https://aur.archlinux.org/cgit/aur.git/commit/?h=llvm-minimal-git&id=ae64860f523a57e2c6d0a9e65ed8af8c82d1ca73
-# build aborts with FORTIFY_SOURCE=3 , see https://github.com/llvm/llvm-project/issues/85509
-export CFLAGS="${CFLAGS/_FORTIFY_SOURCE=3/_FORTIFY_SOURCE=2}"
-export CXXFLAGS="${CXXFLAGS/_FORTIFY_SOURCE=3/_FORTIFY_SOURCE=2}"
 export CFLAGS+=" -m32"
 export CXXFLAGS+=" -m32"
 export LDFLAGS+=" -m32"

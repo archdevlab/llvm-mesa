@@ -21,9 +21,9 @@ pkgname=(
   vulkan-imagination-git
   intel_clc-git
 )
-pkgver=24.3.0_devel.193093.d9849ac4662
+pkgver=24.3.0_devel.196104.b339c525f44
 pkgrel=1
-commit=d9849ac46623797a9f56fb9d46dc52460ac477de
+commit=b339c525f449f19f6515201509d8a7455d239195
 arch=(x86_64)
 url='https://mesa3d.org/'
 license=(MIT AND BSD-3-Clause AND SGI-B-2.0)
@@ -80,8 +80,8 @@ makedepends=(
   # d3d12 deps
   directx-headers-git
 
-  # gallium-omx deps
-  libomxil-bellagio
+  # Vulkan screenshot layer
+  libpng
 )
 makedepends+=(
   ninja
@@ -108,9 +108,9 @@ source=(git+https://gitlab.freedesktop.org/mesa/mesa.git#commit="${commit}")
 # Rust crates for NVK, used as Meson subprojects
 declare -A _crates=(
    paste          1.0.14
-   proc-macro2    1.0.70
+   proc-macro2    1.0.86
    quote          1.0.33
-   syn            2.0.39
+   syn            2.0.68
    unicode-ident  1.0.12
 )
 
@@ -172,18 +172,17 @@ build(){
     -D egl-native-platform=auto
     -D android-stub=false
     -D android-libbacktrace=disabled
-    -D dri3=enabled
     -D expat=auto
     -D gallium-drivers=r300,r600,radeonsi,nouveau,virgl,svga,i915,iris,zink,crocus,d3d12,softpipe,llvmpipe
     -D gallium-extra-hud=true
     -D gallium-vdpau=enabled
-    -D gallium-omx=bellagio
     -D gallium-va=enabled
     -D gallium-xa=enabled
     -D gallium-nine=true
     -D gallium-d3d10umd=false
     -D gallium-opencl=icd
     -D gallium-rusticl=true
+    -D gallium-rusticl-enable-drivers=auto
     -D rust_std=2021
     -D opencl-spirv=false
     -D static-libclc=all
@@ -191,7 +190,7 @@ build(){
     -D imagination-srv=true
     -D shader-cache=enabled
     -D shader-cache-default=true
-    -D vulkan-layers=device-select,intel-nullhw,overlay
+    -D vulkan-layers=device-select,intel-nullhw,overlay,screenshot
     -D shared-glapi=enabled
     -D gles1=enabled
     -D gles2=enabled
@@ -281,7 +280,6 @@ package_mesa-git(){
     wayland
     zlib
     zstd
-    libomxil-bellagio
   )
   optdepends=('opengl-man-pages: for the OpenGL API man pages')
   provides=(
@@ -702,8 +700,8 @@ package_intel_clc-git(){
 }
 
 sha256sums=(SKIP
-            39278fbbf5fb4f646ce651690877f89d1c5811a3d4acb27700c1cb3cdb78fd3b
-            3354b9ac3fae1ff6755cb6db53683adb661634f67557942dea4facebec0fee4b
-            5267fca4496028628a95160fc423a33e8b2e6af8a5302579e322e4b520293cae
-            de3145af08024dea9fa9914f381a17b8fc6034dfb00f3a84013f7ff43f29ed4c
-            23e78b90f2fcf45d3e842032ce32e3f2d1545ba6636271dcbf24fa306d87be7a)
+            '5e719e8df665df0d1c8fbfd238015744736151d4445ec0836b8e628aae103b77'
+            '3354b9ac3fae1ff6755cb6db53683adb661634f67557942dea4facebec0fee4b'
+            '5267fca4496028628a95160fc423a33e8b2e6af8a5302579e322e4b520293cae'
+            'de3145af08024dea9fa9914f381a17b8fc6034dfb00f3a84013f7ff43f29ed4c'
+            '901fa70d88b9d6c98022e23b4136f9f3e54e4662c3bc1bd1d84a42a9a0f0c1e9')
