@@ -36,43 +36,43 @@ Why Mesa's packages are not in a separate repo? Because mesa and llvm are closel
 
 - 1.5.5
 
-- commit : f013f08e4455bcc1f0eed8e3dd5e2009682656d9
+- commit : a62b032007b2e7a69f24a195cbfbd0cf22d31bb0
 
 ### SPIRV-Tools
 
-- 2024.3
+- 2024.4
 
-- commit : 246daf246bb17336afcf4482680bba434b1e5557
+- commit : ada92f84927350c8f3567a06e23e4ff2b04f6810
 
 ### glslang
 
-- 14.3.0
+- 15.0.0
 
-- commit : 5398d55e33dff7d26fecdd2c35808add986c558c
+- commit : f69d2768e534132e8626c4817c80e95464dcda8e
 
 ### LLVM/LLD/COMPILRT-RT/CLANG/LLDB/LIBCLC
 
 - 20.0.0
 
-- commit: e76028a11fd3195a3170c1b0cb308e62e73a05a3
+- commit: f0bd62d8709a49dd87eb75411e41e2e11e0ab59d
 
 ### SPIRV-LLVM-Translator
 
 - 20.0.0
 
-- commit : 88e546a689b26792feff6c84e049b13e2e0feef8
+- commit : 7d7f946dbd512367597ee97829febd43ca6c9f77
 
 ### Directx-Headers
 
-- 1.613.1
+- 1.614.1
 
-- commit : 9be295b3b81ce1d0ff2b44f18d0eb86ea54c5122
+- commit : 48a762973271c5a75869946bf1fdbc489a628a5c
 
 ### libdrm
 
-- 2.4.122
+- 2.4.123
 
-- commit : 88db6114985ebcfe14f592930d82d01a3d973101
+- commit : c0a08f06aec84c3be102e57a56e01d639be253bb
 
 
 ### libglvnd
@@ -85,7 +85,7 @@ Why Mesa's packages are not in a separate repo? Because mesa and llvm are closel
 
 - 24.3.0_devel
 
-- commit : d9849ac46623797a9f56fb9d46dc52460ac477de
+- commit : b339c525f449f19f6515201509d8a7455d239195
 
 # Build
 
