@@ -70,6 +70,10 @@ prepare(){
   pushd "${srcdir}"/llvm-project/clang/
   patch -Np2 -i "${srcdir}"/enable-fstack-protector-strong-by-default.patch
   popd
+
+  # Fix hardcoded test path
+  sed -i 's/clang-tools-extra/tools\/extra/g' "${srcdir}"/llvm-project/clang/tools/extra/test/clang-doc/enum.cpp
+  sed -i 's/clang-tools-extra/tools\/extra/g' "${srcdir}"/llvm-project/clang/tools/extra/test/clang-doc/namespace.cpp
 }
 
 build(){
