@@ -40,7 +40,7 @@ build(){
     -G "Unix Makefiles"
     -D CMAKE_BUILD_TYPE=Release
     -D CMAKE_INSTALL_PREFIX=/usr
-    -D CMAKE_SKIP_INSTALL_RPATH=ON
+    -D CMAKE_SKIP_RPATH=ON
     -D CLANG_LINK_CLANG_DYLIB=ON
     -D LLVM_LINK_LLVM_DYLIB=ON
     -D LLVM_INCLUDE_TESTS=OFF
@@ -65,12 +65,17 @@ package(){
   make -j$(nproc) -C "${srcdir}"/build DESTDIR="${pkgdir}" install
 
   # Compile Python scripts
-  _py=$([[ "$(python -V)" =~ Python[[:space:]]*([0-9]+.[0-9]+) ]] && echo ${BASH_REMATCH[1]})
-  local site_packages="/usr/lib/python$_py/site-packages"
-  install -d "${pkgdir}"/"${site_packages}"
-  _python_optimize "${srcdir}"/build "${pkgdir}"/"${site_packages}"
+  python -m compileall -d "${srcdir}"/build/usr/lib "$pkgdir/usr/lib"
+  python -O -m compileall -d "${srcdir}"/build/usr/lib "$pkgdir/usr/lib"
+  python -OO -m compileall -d "${srcdir}"/build/usr/lib "$pkgdir/usr/lib"
+
+  # Compile Python scripts
+  # _py=$([[ "$(python -V)" =~ Python[[:space:]]*([0-9]+.[0-9]+) ]] && echo ${BASH_REMATCH[1]})
+  # local site_packages="/usr/lib/python$_py/site-packages"
+  # install -d "${pkgdir}"/"${site_packages}"
+  # _python_optimize "${srcdir}"/build "${pkgdir}"/"${site_packages}"
   # optimize other python files
-  _python_optimize "${pkgdir}"/usr/share
+  # _python_optimize "${pkgdir}"/usr/share
 
   # install license
   install -dm755 "${pkgdir}"/usr/share/licenses/"${pkgname}"
