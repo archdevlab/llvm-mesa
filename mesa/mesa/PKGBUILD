@@ -21,7 +21,7 @@ pkgname=(
 )
 pkgver=24.3.0_devel.196104.b339c525f44
 pkgrel=1
-commit=b339c525f449f19f6515201509d8a7455d239195
+commit=4bed508122b20b750f71883f2225e14b9bb15102
 arch=(x86_64)
 url='https://mesa3d.org/'
 license=(MIT AND BSD-3-Clause AND SGI-B-2.0)
@@ -196,10 +196,11 @@ build(){
     -D gallium-opencl=icd
     -D gallium-rusticl=true
     -D gallium-rusticl-enable-drivers=auto
-    -D rust_std=2021
-    -D opencl-spirv=false
     -D static-libclc=all
+    #-D rust_std=2021
+    #-D opencl-spirv=false
     -D vulkan-drivers=amd,intel,intel_hasvk,swrast,virtio,imagination-experimental,nouveau
+    -D amdgpu-virtio=true
     -D imagination-srv=true
     -D shader-cache=enabled
     -D shader-cache-default=true
@@ -243,12 +244,17 @@ build(){
     -D vmware-mks-stats=false
     -D vulkan-beta=true
     -D intel-clc=enabled
+    -D intel-bvh-grl=false
     -D install-intel-clc=true
     -D intel-rt=enabled
     -D video-codecs=all
     -D gallium-d3d12-video=enabled
     -D gallium-d3d12-graphics=enabled
     -D legacy-x11=dri2
+    -D mesa-clc=enabled
+    -D install-mesa-clc=true
+    -D precomp-compiler=enabled
+    -D install-precomp-compiler=true
   )
 
   # Inject subproject packages
@@ -290,6 +296,7 @@ package_mesa-git(){
     libxxf86vm
     llvm-libs-git
     lm_sensors
+    spirv-tools-git
     wayland
     zlib
     zstd
@@ -310,7 +317,11 @@ package_mesa-git(){
      mesa-vdpau
      mesa
   )
-  replaces=(mesa-libgl)
+  replaces=(
+     libva-mesa-driver
+     mesa-libgl
+     mesa-vdpau
+  )
 
   meson install -C "${srcdir}"/build --destdir "${pkgdir}"
 
@@ -318,10 +329,6 @@ package_mesa-git(){
     local libdir=usr/lib icddir=usr/share/vulkan/icd.d
 
     cd "$pkgdir"
-
-    _pick libva $libdir/dri/*_drv_video.so
-
-    _pick vdpau $libdir/vdpau
 
     _pick clover $libdir/gallium-pipe
     _pick clover $libdir/libMesaOpenCL*
@@ -365,58 +372,6 @@ package_mesa-git(){
   install -Dm644 "${srcdir}"/mesa/docs/license.rst "${pkgdir}"/usr/share/licenses/"${pkgname}"/LICENSE
 }
 
-package_libva-mesa-driver-git(){
-  pkgdesc='Open-source VA-API drivers (git version)'
-  depends=(
-    expat
-    gcc-libs
-    glibc
-    libdrm-git
-    libelf
-    libx11
-    libxcb
-    libxshmfence
-    llvm-libs-git
-    zlib
-    zstd
-  )
-  provides=(
-    libva-driver
-    libva-mesa-driver
-  )
-  conflicts=(libva-mesa-driver)
-
-  mv "${srcdir}"/libva/* "${pkgdir}"
-
-  install -Dm644 "${srcdir}"/mesa/docs/license.rst "${pkgdir}"/usr/share/licenses/"${pkgname}"/LICENSE
-}
-
-package_mesa-vdpau-git(){
-  pkgdesc='Open-source VDPAU drivers (git version)'
-  depends=(
-    expat
-    gcc-libs
-    glibc
-    libdrm-git
-    libelf
-    libx11
-    libxcb
-    libxshmfence
-    llvm-libs-git
-    zlib
-    zstd
-  )
-  provides=(
-    vdpau-driver
-    mesa-vdpau
-  )
-  conflicts=(mesa-vdpau)
-
-  mv "${srcdir}"/vdpau/* "${pkgdir}"
-
-  install -Dm644 "${srcdir}"/mesa/docs/license.rst "${pkgdir}"/usr/share/licenses/"${pkgname}"/LICENSE
-}
-
 # https://gitlab.freedesktop.org/mesa/mesa/-/issues/8591
 # Now we can re-enable gallium-opencl : https://gitlab.freedesktop.org/mesa/mesa/-/issues/8591#note_2058098
 package_opencl-clover-mesa-git(){
@@ -430,11 +385,10 @@ package_opencl-clover-mesa-git(){
     libdrm-git
     libelf
     llvm-libs-git
-    spirv-llvm-translator-git
-    spirv-tools-git
     zlib
     zstd
-    libclc-git
+    
+    libclc-git  # For /usr/share/clc/
   )
   optdepends=('opencl-headers: headers necessary for OpenCL development')
   provides=(
@@ -470,7 +424,8 @@ package_opencl-rusticl-mesa-git(){
     spirv-tools-git
     zlib
     zstd
-    libclc-git
+    
+    libclc-git   # For /usr/share/clc/
   )
   optdepends=('opencl-headers: headers necessary for OpenCL development')
   provides=(
@@ -501,6 +456,7 @@ package_vulkan-intel-git(){
     libx11
     libxcb
     libxshmfence
+    spirv-tools-git
     systemd-libs
     vulkan-icd-loader
     wayland
@@ -530,8 +486,10 @@ package_vulkan-mesa-layers-git(){
     gcc-libs
     glibc
     libdrm-git
+    libpng
     libxcb
     wayland
+    
     python
   )
   provides=(vulkan-mesa-layers)
@@ -553,6 +511,7 @@ package_vulkan-nouveau-git(){
     libx11
     libxcb
     libxshmfence
+    spirv-tools-git
     systemd-libs
     vulkan-icd-loader
     wayland
@@ -584,6 +543,7 @@ package_vulkan-radeon-git(){
     libxcb
     libxshmfence
     llvm-libs-git
+    spirv-tools-git
     systemd-libs
     vulkan-icd-loader
     wayland
@@ -614,6 +574,7 @@ package_vulkan-swrast-git(){
     libxcb
     libxshmfence
     llvm-libs-git
+    spirv-tools-git
     systemd-libs
     vulkan-icd-loader
     wayland
