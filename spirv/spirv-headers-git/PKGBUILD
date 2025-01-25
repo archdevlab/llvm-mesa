@@ -4,7 +4,8 @@
 
 pkgname=spirv-headers-git
 pkgdesc='SPIR-V Headers (git version)'
-pkgver=1.5.5.r659.ga62b032
+epoch=1
+pkgver=1.4.304.0.r4.g2b2e05e
 pkgrel=1
 commit=2b2e05e088841c63c0b6fd4c9fb380d8688738d3
 arch=(x86_64)
@@ -22,7 +23,8 @@ pkgver(){
   #git describe --long --tags --abbrev=7 --exclude '*raytracing*' --exclude '*vulkan*' | sed 's/^sdk.//;s/\([^-]*-g\)/r\1/;s/-/./g'
   #git describe --long --tags --abbrev=7 --exclude '*raytracing*' | sed 's/^vulkan-sdk.//;s/\([^-]*-g\)/r\1/;s/-/./g'
   #git describe --long --tags --abbrev=7 | sed -r 's,^[^0-9]+,,;s,([0-9]*-g),r\1,;s,[-_],.,g' | sed 's/.0//g'
-  echo $(sed -n 27p CMakeLists.txt | cut -c 44- | sed 's/)//g').r$(git rev-list --count HEAD).g$(git rev-parse --short=7 HEAD)
+  git describe --long --tags --abbrev=7 | sed 's/^[^0-9]*//; s/\([^-]*-g\)/r\1/; s/-/./g'
+  #echo $(sed -n 27p CMakeLists.txt | cut -c 44- | sed 's/)//g').r$(git rev-list --count HEAD).g$(git rev-parse --short=7 HEAD)
 }
 
 build(){

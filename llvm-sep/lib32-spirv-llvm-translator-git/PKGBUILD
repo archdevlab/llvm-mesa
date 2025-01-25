@@ -7,7 +7,7 @@
 pkgname=lib32-spirv-llvm-translator-git
 pkgdesc='Tool and a library for bi-directional translation between SPIR-V and LLVM IR (32-bit) (git version)'
 url='https://github.com/KhronosGroup/SPIRV-LLVM-Translator'
-pkgver=20.0.0.r2129.g7d7f946
+pkgver=20.0.0.r2206.gcec12d6
 _pkgver=20.0.0
 pkgrel=1
 commit=cec12d6cf46306d0a015e883d5adb5a8200df1c0

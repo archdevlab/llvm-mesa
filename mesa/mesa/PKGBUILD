@@ -17,9 +17,8 @@ pkgname=(
   vulkan-swrast-git
   vulkan-virtio-git
   vulkan-imagination-git
-  intel_clc-git
 )
-pkgver=24.3.0_devel.196104.b339c525f44
+pkgver=25.0.0_devel.200560.4bed508122b
 pkgrel=1
 commit=4bed508122b20b750f71883f2225e14b9bb15102
 arch=(x86_64)
@@ -157,19 +156,6 @@ prepare(){
 build(){
   rm -rf "${srcdir}"/build
 
-  # gallium-opencl is disabled since this issue in mesa
-  # https://gitlab.freedesktop.org/mesa/mesa/-/issues/8591
-  # Now we can re-enable gallium-opencl : https://gitlab.freedesktop.org/mesa/mesa/-/issues/8591#note_2058098
-
-  # use --force-fallback-for=syn to download syn required for vulkan-nouveau-git
-
-  # enable install-intel-clc
-  # https://gitweb.gentoo.org/repo/gentoo.git/tree/dev-util/intel_clc
-  # https://gitlab.freedesktop.org/mesa/mesa/-/commit/1e31fd5f4268b134b26cd9d82d76d406332a3d8d
-  # Install the intel-clc compiler (if needed for cross builds)
-  # We need this, beacause we build lib32-mesa and include opencl-rusticl-mesa. In native build with llvm32.native
-  # we get some error with rust. So when installing this package everything work fine
-
   local meson_options=(
     -D b_ndebug=true
     -D b_lto=false
@@ -197,8 +183,6 @@ build(){
     -D gallium-rusticl=true
     -D gallium-rusticl-enable-drivers=auto
     -D static-libclc=all
-    #-D rust_std=2021
-    #-D opencl-spirv=false
     -D vulkan-drivers=amd,intel,intel_hasvk,swrast,virtio,imagination-experimental,nouveau
     -D amdgpu-virtio=true
     -D imagination-srv=true
@@ -310,17 +294,20 @@ package_mesa-git(){
     opengl-driver
     vdpau-driver
     mesa
+    intel_clc-git
   )
   conflicts=(
      libva-mesa-driver
      mesa-libgl
      mesa-vdpau
      mesa
+     intel_clc-git
   )
   replaces=(
      libva-mesa-driver
      mesa-libgl
      mesa-vdpau
+     intel_clc-git
   )
 
   meson install -C "${srcdir}"/build --destdir "${pkgdir}"
@@ -362,8 +349,6 @@ package_mesa-git(){
     # imagination-srv
     # Services backend for Imagination Technologies vulkan driver
     _pick vkimagination $libdir/libpowervr_rogue.so
-
-    _pick intelclc usr/bin/intel_clc
 
     # indirect rendering
     ln -sr $libdir/libGLX_{mesa,indirect}.so.0
@@ -659,29 +644,39 @@ package_vulkan-imagination-git(){
 
 # We need this, beacause we build lib32-mesa and include opencl-rusticl-mesa. In native build with llvm32.native
 # we get some error with rust. So when installing this package everything work fine
-package_intel_clc-git(){
-  pkgdesc='Intel_clc tool used for building OpenCL C to SPIR-V (git version)'
-  depends=(
-    libclc-git
-    spirv-tools-git
-    zlib
-    libdrm-git
-    spirv-llvm-translator-git
-    clang-git
-    clang-libs-git
-    llvm-git
-    llvm-libs-git
-    expat
-   )
+# package_intel_clc-git(){
+#  pkgdesc='Intel_clc tool used for building OpenCL C to SPIR-V (git version)'
+#  depends=(
+#    libclc-git
+#    spirv-tools-git
+#    zlib
+#    libdrm-git
+#    spirv-llvm-translator-git
+#    clang-git
+#    clang-libs-git
+#    llvm-git
+#    llvm-libs-git
+#    expat
+#   )
+#
+#  mv "${srcdir}"/intelclc/* "${pkgdir}"
+#
+#  install -Dm644 "${srcdir}"/mesa/docs/license.rst "${pkgdir}"/usr/share/licenses/"${pkgname}"/LICENSE
+#}
 
-  mv "${srcdir}"/intelclc/* "${pkgdir}"
-
-  install -Dm644 "${srcdir}"/mesa/docs/license.rst "${pkgdir}"/usr/share/licenses/"${pkgname}"/LICENSE
-}
-
-sha256sums=(SKIP
+sha256sums=('SKIP'
+            'ed646292ffc8188ef8ea4d1e0e0150fb15a5c2e12ad9b8fc191ae7a8a7f3c4b9'
+            'a941429fea7e08bedec25e4f6785b6ffaacc6b755da98df5ef3e7dcf4a124c4f'
+            '168fb715dda47215e360912c096649d23d58bf392ac62f73919e831745e40f26'
+            '7dfda62a12f55daeae5015f81b0baea145391cb4520f86c248fc615d72640d12'
             '5e719e8df665df0d1c8fbfd238015744736151d4445ec0836b8e628aae103b77'
+            '2a548d2beca6773b1c244554d36fcf8548a8a58e74156968211567250e48e49a'
             '3354b9ac3fae1ff6755cb6db53683adb661634f67557942dea4facebec0fee4b'
             '5267fca4496028628a95160fc423a33e8b2e6af8a5302579e322e4b520293cae'
+            '6c20b6793b5c2fa6553b250154b78d6d0db37e72700ae35fad9387a46f487c97'
             'de3145af08024dea9fa9914f381a17b8fc6034dfb00f3a84013f7ff43f29ed4c'
+            'cd53dff83f26735fdc1ca837098ccf133605d794cdae66acfc2bfac3ec809d95'
+            '5443807d6dff69373d433ab9ef5378ad8df50ca6298caf15de6e52e24aaf54d5'
+            '3c93a82e8d145725dcbaf44e5ea887c8a869efdcc28706df2d08c69e17077183'
+            '692fcb63b64b1758029e0a96ee63e049ce8c5948587f2f7208df04625e5f6b56'
             '901fa70d88b9d6c98022e23b4136f9f3e54e4662c3bc1bd1d84a42a9a0f0c1e9')

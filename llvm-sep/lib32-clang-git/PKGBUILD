@@ -6,7 +6,7 @@
 pkgbase=lib32-clang-git
 pkgname=(lib32-clang-git lib32-clang-libs-git)
 url='https://clang.llvm.org/'
-pkgver=20.0.0.r514187.gf0bd62d8709a
+pkgver=20.0.0.r524610.g335f1a72b225
 pkgrel=1
 commit=335f1a72b22560e61f6170efef740c9c26b24f1a
 arch=(i686 x86_64)
@@ -134,7 +134,7 @@ package_lib32-clang-git(){
   # install license
   install -dm755 "${pkgdir}"/usr/share/licenses/"${pkgname}"
   install -m644 "${srcdir}"/llvm-project/clang/LICENSE.TXT "${pkgdir}"/usr/share/licenses/"${pkgname}"/LICENSE
-  install -m644 "${srcdir}"/llvm-project/clang/CodeOwners.rst "${pkgdir}"/usr/share/licenses/"${pkgname}"/CodeOwners.rst
+  install -m644 "${srcdir}"/llvm-project/clang/Maintainers.rst "${pkgdir}"/usr/share/licenses/"${pkgname}"/Maintainers.rst
 }
 
 # https://bugs.archlinux.org/task/72588?project=1&string=clang
@@ -152,7 +152,7 @@ package_lib32-clang-libs-git(){
   # install license
   install -dm755 "${pkgdir}"/usr/share/licenses/"${pkgname}"
   install -m644 "${srcdir}"/llvm-project/clang/LICENSE.TXT "${pkgdir}"/usr/share/licenses/"${pkgname}"/LICENSE
-  install -m644 "${srcdir}"/llvm-project/clang/CodeOwners.rst "${pkgdir}"/usr/share/licenses/"${pkgname}"/CodeOwners.rst
+  install -m644 "${srcdir}"/llvm-project/clang/Maintainers.rst "${pkgdir}"/usr/share/licenses/"${pkgname}"/Maintainers.rst
 }
 
 sha256sums=(SKIP
