@@ -4,9 +4,9 @@
 
 pkgname=lib32-spirv-tools-git
 pkgdesc='API and commands for processing SPIR-V modules (32-bit) (git version)'
-pkgver=2024.4.r4057.gada92f8
+pkgver=2024.4.r4127.g066c3d5
 pkgrel=1
-commit=ada92f84927350c8f3567a06e23e4ff2b04f6810
+commit=066c3d52c2fca8d9df79ca37055c3f5eddf2ffce
 arch=(i686 x86_64)
 url='https://github.com/KhronosGroup/SPIRV-Tools.git'
 license=(Apache-2.0)

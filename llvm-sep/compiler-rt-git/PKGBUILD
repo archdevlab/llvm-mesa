@@ -6,9 +6,9 @@
 pkgname=compiler-rt-git
 pkgdesc='Compiler runtime libraries for clang (git version)'
 url='https://compiler-rt.llvm.org/'
-pkgver=20.0.0.r514187.gf0bd62d8709a
+pkgver=20.0.0.r524610.g335f1a72b225
 pkgrel=1
-commit=f0bd62d8709a49dd87eb75411e41e2e11e0ab59d
+commit=335f1a72b22560e61f6170efef740c9c26b24f1a
 arch=(x86_64)
 license=('Apache-2.0 WITH LLVM-exception')
 depends=(gcc-libs)
@@ -50,6 +50,7 @@ build(){
       -D CMAKE_SKIP_RPATH=ON
       -D COMPILER_RT_INSTALL_PATH=/usr/lib/clang/19
       -D LLVM_CONFIG=/usr/bin/llvm-config
+      -D COMPILER_RT_USE_LIBCXX=OFF   # Fix weird bug
     )
 
   cmake -B "${srcdir}"/build -S "${srcdir}"/llvm-project/compiler-rt "${cmake_args[@]}" -Wno-dev
@@ -64,7 +65,7 @@ package(){
   install -dm755 "${pkgdir}"/usr/share/licenses/"${pkgname}"
   install -m644 "${srcdir}"/llvm-project/compiler-rt/LICENSE.TXT "${pkgdir}"/usr/share/licenses/"${pkgname}"/LICENSE
   install -m644 "${srcdir}"/llvm-project/compiler-rt/CREDITS.TXT "${pkgdir}"/usr/share/licenses/"${pkgname}"/CREDITS
-  install -m644 "${srcdir}"/llvm-project/compiler-rt/CODE_OWNERS.TXT "${pkgdir}"/usr/share/licenses/"${pkgname}"/CODE_OWNERS
+  install -m644 "${srcdir}"/llvm-project/compiler-rt/Maintainers.md "${pkgdir}"/usr/share/licenses/"${pkgname}"/Maintainers
 }
 
 sha256sums=(SKIP)

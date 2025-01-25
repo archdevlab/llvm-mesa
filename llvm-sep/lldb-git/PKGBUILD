@@ -6,9 +6,9 @@
 pkgname=lldb-git
 pkgdesc='Next generation, high-performance debugger (git version)'
 url='https://lld.llvm.org/'
-pkgver=20.0.0.r514187.gf0bd62d8709a
+pkgver=20.0.0.r524610.g335f1a72b225
 pkgrel=1
-commit=f0bd62d8709a49dd87eb75411e41e2e11e0ab59d
+commit=335f1a72b22560e61f6170efef740c9c26b24f1a
 arch=(x86_64)
 license=('Apache-2.0 WITH LLVM-exception')
 depends=(llvm-libs-git clang-git clang-libs-git gcc-libs zlib xz
@@ -65,12 +65,17 @@ package(){
   make -j$(nproc) -C "${srcdir}"/build DESTDIR="${pkgdir}" install
 
   # Compile Python scripts
-  _py=$([[ "$(python -V)" =~ Python[[:space:]]*([0-9]+.[0-9]+) ]] && echo ${BASH_REMATCH[1]})
-  local site_packages="/usr/lib/python$_py/site-packages"
-  install -d "${pkgdir}"/"${site_packages}"
-  _python_optimize "${srcdir}"/build "${pkgdir}"/"${site_packages}"
+  python -m compileall -d "${srcdir}"/build/usr/lib "$pkgdir/usr/lib"
+  python -O -m compileall -d "${srcdir}"/build/usr/lib "$pkgdir/usr/lib"
+  python -OO -m compileall -d "${srcdir}"/build/usr/lib "$pkgdir/usr/lib"
+
+  # Compile Python scripts
+  # _py=$([[ "$(python -V)" =~ Python[[:space:]]*([0-9]+.[0-9]+) ]] && echo ${BASH_REMATCH[1]})
+  # local site_packages="/usr/lib/python$_py/site-packages"
+  # install -d "${pkgdir}"/"${site_packages}"
+  # _python_optimize "${srcdir}"/build "${pkgdir}"/"${site_packages}"
   # optimize other python files
-  _python_optimize "${pkgdir}"/usr/share
+  # _python_optimize "${pkgdir}"/usr/share
 
   # install license
   install -dm755 "${pkgdir}"/usr/share/licenses/"${pkgname}"

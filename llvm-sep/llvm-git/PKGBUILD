@@ -6,13 +6,13 @@
 pkgbase=llvm-git
 pkgname=(llvm-git llvm-libs-git)
 url='https://llvm.org/'
-pkgver=20.0.0.r514187.gf0bd62d8709a
+pkgver=20.0.0.r524610.g335f1a72b225
 pkgrel=1
-commit=f0bd62d8709a49dd87eb75411e41e2e11e0ab59d
+commit=335f1a72b22560e61f6170efef740c9c26b24f1a
 arch=(x86_64)
 license=('Apache-2.0 WITH LLVM-exception')
-makedepends=(cmake ninja zlib zstd curl libffi libedit ncurses
-             libxml2 python-setuptools python-psutil python-sphinx
+makedepends=(cmake ninja zlib zstd curl libffi libedit libxml2
+             python-setuptools python-psutil python-sphinx
              python-myst-parser make git)
 options=(staticlibs !lto) # tools/llvm-shlib/typeids.test fails with LTO
 source=(git+https://github.com/llvm/llvm-project.git#commit="${commit}")
@@ -90,6 +90,7 @@ build(){
       -D CMAKE_BUILD_TYPE=Release
       -D CMAKE_INSTALL_PREFIX=/usr
       -D LLVM_BINUTILS_INCDIR=/usr/include
+      -D CMAKE_SKIP_RPATH=ON
       -D FFI_INCLUDE_DIR=$(pkg-config --variable=includedir libffi)
       -D LLVM_VERSION_SUFFIX=""
       -D LLVM_APPEND_VC_REV=ON
@@ -170,7 +171,7 @@ package_llvm-libs-git(){
   #conflicts=(llvm-libs)
   # some applications expect llvmgold.so to be present and fail badly if it isn't.
   # adding repo llvm-libs as depend is the easiest solution
-  depends=(gcc-libs zlib zstd libffi libedit ncurses libxml2 llvm-libs)
+  depends=(gcc-libs zlib zstd libffi libedit libxml2 llvm-libs)
   provides=(llvm-libs-minimal-git llvm-libs-git)
   conflicts=(llvm-libs-minimal-git)
   replaces=(llvm-libs-minimal-git)

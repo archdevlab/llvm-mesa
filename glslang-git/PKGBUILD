@@ -13,9 +13,9 @@
 
 pkgname=glslang-git
 pkgdesc='OpenGL and OpenGL ES shader front end and validator (git version)'
-pkgver=15.0.0.r6.gf69d276
+pkgver=15.1.0.r15.g55627fd
 pkgrel=1
-commit=f69d2768e534132e8626c4817c80e95464dcda8e
+commit=55627fd81dcc56068997073be9e3a2f912285904
 arch=(x86_64)
 url='https://github.com/KhronosGroup/glslang'
 license=(BSD)
@@ -28,7 +28,7 @@ source=(git+https://github.com/KhronosGroup/glslang.git#commit="${commit}")
 
 pkgver(){
   cd "${srcdir}"/glslang
-  git describe --long --tags --abbrev=7 --exclude master-tot --exclude main-tot --exclude sdk-* --exclude SDK-candidate\* --exclude untagged\* | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+  git describe --long --tags --abbrev=7 --exclude master-tot --exclude main-tot --exclude sdk-* --exclude SDK-candidate\* --exclude untagged\* --exclude vulkan-sdk-* | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 prepare(){
